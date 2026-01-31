@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan | Hijri & Ananda</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --pink:#f3b4c4; --rose:#8b3a62; --soft:#fde6ec;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:'Poppins',sans-serif;
+  background:var(--soft); color:#4a4a4a; text-align:center;
+}
+section{padding:64px 20px}
+.hidden{display:none}
+
+.cover{
+  min-height:100vh; display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  background:linear-gradient(160deg,var(--pink),var(--soft));
+}
+.cover h1{
+  font-family:'Great Vibes',cursive;
+  font-size:52px; color:var(--rose);
+}
+.btn{
+  margin-top:24px; padding:12px 26px;
+  border-radius:999px; background:var(--rose);
+  color:#fff; border:none; font-size:16px;
+}
+
+h2{
+  font-family:'Playfair Display',serif;
+  color:var(--rose);
+}
+.names{
+  font-family:'Great Vibes',cursive;
+  font-size:40px; color:var(--rose);
+}
+.card{
+  background:#fff; padding:26px;
+  border-radius:18px;
+  box-shadow:0 14px 30px rgba(0,0,0,.1);
+  max-width:520px; margin:20px auto;
+}
+.gallery img{
+  width:100%; border-radius:14px; margin-bottom:14px;
+}
+.music{
+  position:fixed; right:18px; bottom:18px;
+  width:52px; height:52px; border-radius:50%;
+  background:var(--rose); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+}
+footer{padding:28px; font-size:13px}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIK -->
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2f3c8e7df8.mp3">
+</audio>
+<div class="music" onclick="toggleMusic()">♫</div>
+
+<!-- COVER -->
+<section class="cover" id="cover">
+  <p>Kepada Yth.</p>
+  <h2 id="tamu">Tamu Undangan</h2>
+  <p>Di Tempat</p>
+
+  <h1>Hijri & Ananda</h1>
+  <p>28 Maret 2026</p>
+
+  <button class="btn" onclick="buka()">Buka Undangan</button>
+</section>
+
+<!-- ISI -->
+<div id="isi" class="hidden">
+
+<section>
+  <p>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+  <p>
+    Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan
+    untukmu dari jenismu sendiri agar kamu cenderung dan merasa tenteram kepadanya,
+    dan Dia menjadikan di antaramu rasa kasih dan sayang.
+  </p>
+  <p><b>(QS. Ar-Rum : 21)</b></p>
+</section>
+
+<section>
+  <div class="names">Hijri Rif'ani Rafiq</div>
+  <p>Putra dari<br><b>Arofiq Dardiri</b><br>&<br><b>Ratna Khoiriyah</b></p>
+
+  <div class="names">Ananda Fortuna</div>
+  <p>Putri dari<br><b>Effendi Saman</b><br>&<br><b>Sri Ratna Mulyati</b></p>
+</section>
+
+<section>
+  <h2>Detail Acara</h2>
+  <div class="card">
+    <h3>Sabtu, 28 Maret 2026</h3>
+    <p>Gedung Budiardjo Koharmatau</p>
+    <div id="countdown"></div>
+    <br>
+    <a class="btn" href="https://maps.google.com/?q=Gedung+Budiardjo+Koharmatau" target="_blank">
+      Lihat Lokasi
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Galeri Foto</h2>
+  <div class="card gallery">
+    <img src="https://via.placeholder.com/700x450?text=Foto+Prewedding">
+    <img src="https://via.placeholder.com/700x450?text=Foto+Prewedding">
+  </div>
+</section>
+
+<section>
+  <p>
+    Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+    Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+  </p>
+  <p><b>Wassalamu’alaikum Warahmatullahi Wabarakatuh</b></p>
+</section>
+
+<footer>© 2026 Hijri & Ananda</footer>
+</div>
+
+<script>
+/* Nama tamu dari URL */
+const params=new URLSearchParams(window.location.search);
+document.getElementById("tamu").innerText =
+  params.get("to") ? params.get("to").replace(/\+/g," ") : "Tamu Undangan";
+
+/* Buka undangan */
+function buka(){
+  document.getElementById("cover").style.display="none";
+  document.getElementById("isi").classList.remove("hidden");
+  document.getElementById("bgm").play();
+}
+
+/* Countdown */
+const eventDate=new Date("March 28, 2026 00:00:00").getTime();
+setInterval(()=>{
+  const d=eventDate-Date.now();
+  document.getElementById("countdown").innerHTML =
+    d>0 ? Math.floor(d/86400000)+" Hari Menuju Akad" : "Hari Bahagia 💍";
+},1000);
+
+/* Musik */
+function toggleMusic(){
+  const m=document.getElementById("bgm");
+  m.paused?m.play():m.pause();
+}
+</script>
+
+</body>
+</html>
